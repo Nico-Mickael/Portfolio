@@ -14,7 +14,7 @@ export function Footer() {
               NICO MICKAEL ANDRIAMISATA
             </p>
             <p className="mt-1 text-sm">
-              Ingénieur informaticien — Responsable des Systèmes d’Information
+              Ingénieur informaticien — IT Support, Systèmes &amp; Réseaux, Cybersécurité, DevOps
             </p>
           </div>
 

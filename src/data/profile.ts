@@ -6,8 +6,8 @@ import type { NavItem, Profile } from '../types'
 
 export const profile: Profile = {
   name: 'NICO MICKAEL ANDRIAMISATA',
-  role: 'Responsable des Systèmes d’Information',
-  headline: 'Responsable des Systèmes d’Information',
+  role: 'IT Support | Systèmes & Réseaux | Cybersécurité | DevOps',
+  headline: 'IT Support · Systèmes & Réseaux · Cybersécurité · DevOps',
   summary:
     "Ingénieur sortant de l’École Nationale de l’Informatique, passionné par les infrastructures IT, les systèmes, les réseaux, la cybersécurité, le DevOps et le développement web.",
   location: 'Antananarivo, Madagascar',
