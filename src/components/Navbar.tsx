@@ -51,15 +51,6 @@ export function Navbar() {
           aria-label="Navigation principale"
           className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8"
         >
-        <a
-          href="#accueil"
-          onClick={closeMenu}
-          className="text-strong -my-1.5 inline-flex min-h-11 shrink-0 items-center py-1.5 text-sm font-semibold tracking-tight"
-        >
-          N<span className="text-brand-700 dark:text-brand-300">.</span>M
-          <span className="hidden sm:inline"> ANDRIAMISATA</span>
-        </a>
-
         <ul className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <li key={item.id}>
