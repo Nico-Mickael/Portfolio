@@ -10,7 +10,7 @@ export const profile: Profile = {
   headline: 'Responsable des Systèmes d’Information',
   summary:
     "Ingénieur sortant de l’École Nationale de l’Informatique, passionné par les infrastructures IT, les systèmes, les réseaux, la cybersécurité, le DevOps et le développement web.",
-  location: 'Fandriana, Madagascar',
+  location: 'Antananarivo, Madagascar',
   email: 'andriamisatanicomickael@gmail.com',
   phone: '+261 38 39 959 18',
   availability: 'Ouvert aux opportunités professionnelles',
@@ -19,7 +19,7 @@ export const profile: Profile = {
     { label: 'Email', href: 'mailto:andriamisatanicomickael@gmail.com', icon: Mail },
     { label: 'Téléphone', href: 'tel:+261383995918', icon: Phone },
     { label: 'GitHub', href: 'https://github.com/Nico-Mickael', icon: GithubMark },
-    { label: 'Fandriana, Madagascar', href: '', icon: MapPin },
+    { label: 'Antananarivo, Madagascar', href: '', icon: MapPin },
   ],
 }
 
