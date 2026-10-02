@@ -1,6 +1,5 @@
 ﻿import { Mail, MapPin, Phone } from 'lucide-react'
 
-import { ContactForm } from '../components/ContactForm'
 import { Section } from '../components/Section'
 import { GithubMark } from '../components/icons/GithubMark'
 import { profile } from '../data/profile'
@@ -13,9 +12,7 @@ export function Contact() {
       title="Parlons de votre infrastructure"
       description="Disponible pour un poste en IT Support, systèmes et réseaux, cybersécurité ou DevOps. N’hésitez pas à me contacter pour une question technique ou une opportunité."
     >
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-14">
-        <div>
-          <ul className="flex flex-col gap-5">
+      <ul className="grid gap-5 sm:grid-cols-2">
             <li>
               <a
                 href={`mailto:${profile.email}`}
@@ -84,21 +81,9 @@ export function Contact() {
             </li>
           </ul>
 
-          <div className="mt-6 flex items-center gap-2.5">
-            <span className="bg-accent-500 inline-block h-2 w-2 rounded-full" />
-            <p className="text-strong text-sm font-medium">{profile.availability}</p>
-          </div>
-        </div>
-
-        <div className="surface-card rounded-xl p-6 sm:p-8">
-          <h3 className="text-strong text-base font-semibold tracking-tight">
-            Envoyez-moi un message
-          </h3>
-          <p className="text-muted mt-1.5 mb-7 text-sm">
-            Je réponds généralement sous quelques jours.
-          </p>
-          <ContactForm />
-        </div>
+      <div className="mt-6 flex items-center gap-2.5">
+        <span className="bg-accent-500 inline-block h-2 w-2 rounded-full" />
+        <p className="text-strong text-sm font-medium">{profile.availability}</p>
       </div>
     </Section>
   )

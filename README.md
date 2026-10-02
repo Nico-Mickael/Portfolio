@@ -113,17 +113,11 @@ Les règles `@page` et `.no-print` sont dans `src/styles/index.css`.
 
 ---
 
-## Formulaire de contact
+## Contact
 
-Par défaut, le formulaire compose un message et l’ouvre dans le logiciel de
-messagerie du visiteur via `mailto:` — aucun serveur requis.
-
-Pour poster vers un service (Formspree, Web3Forms, votre API…), copiez
-`.env.example` en `.env` et renseignez :
-
-```
-VITE_CONTACT_FORM_ENDPOINT=https://votre-service/endpoint
-```
+La section Contact liste uniquement des liens cliquables : `mailto:` pour l’e-mail,
+`tel:` pour le téléphone, et un lien externe vers GitHub. Il n’y a pas de formulaire,
+donc aucune dépendance à un service tiers ni variable d’environnement à configurer.
 
 ---
 

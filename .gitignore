@@ -17,6 +17,9 @@ dist-ssr
 .env.*
 !.env.example
 
+# Accidental nested clone of the remote (no working files, no commits)
+Portfolio/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
