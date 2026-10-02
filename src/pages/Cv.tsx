@@ -32,7 +32,7 @@ export function Cv() {
         <div className="mx-auto flex h-16 w-full max-w-4xl items-center justify-between gap-4 px-5">
           <Link
             to="/"
-            className="text-muted hover:text-strong inline-flex items-center gap-2 text-sm transition-colors"
+            className="text-muted hover:text-strong -my-2 inline-flex min-h-11 items-center gap-2 py-2 text-sm transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Retour au portfolio

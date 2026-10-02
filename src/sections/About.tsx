@@ -67,27 +67,27 @@ export function About() {
         <Reveal delay={140}>
           <Card className="lg:sticky lg:top-24">
             <h3 className="text-strong text-base font-semibold tracking-tight">Coordonnées</h3>
-            <ul className="mt-4 flex flex-col gap-4">
-              <li className="flex items-start gap-3">
-                <Mail className="text-brand-700 dark:text-brand-300 mt-0.5 h-4 w-4 shrink-0" />
+            <ul className="mt-4 flex flex-col gap-1">
+              <li>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="hover:text-brand-700 dark:hover:text-brand-300 break-all text-sm transition-colors"
+                  className="hover:text-brand-700 dark:hover:text-brand-300 -mx-2 flex min-h-11 items-center gap-3 rounded-md px-2 transition-colors"
                 >
-                  {profile.email}
+                  <Mail className="text-brand-700 dark:text-brand-300 h-4 w-4 shrink-0" />
+                  <span className="text-sm break-all">{profile.email}</span>
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="text-brand-700 dark:text-brand-300 mt-0.5 h-4 w-4 shrink-0" />
+              <li>
                 <a
                   href={`tel:${profile.phone.replace(/\s/g, '')}`}
-                  className="hover:text-brand-700 dark:hover:text-brand-300 text-sm transition-colors"
+                  className="hover:text-brand-700 dark:hover:text-brand-300 -mx-2 flex min-h-11 items-center gap-3 rounded-md px-2 transition-colors"
                 >
-                  {profile.phone}
+                  <Phone className="text-brand-700 dark:text-brand-300 h-4 w-4 shrink-0" />
+                  <span className="text-sm">{profile.phone}</span>
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="text-brand-700 dark:text-brand-300 mt-0.5 h-4 w-4 shrink-0" />
+              <li className="-mx-2 flex min-h-11 items-center gap-3 px-2">
+                <MapPin className="text-brand-700 dark:text-brand-300 h-4 w-4 shrink-0" />
                 <span className="text-sm">{profile.location}</span>
               </li>
             </ul>

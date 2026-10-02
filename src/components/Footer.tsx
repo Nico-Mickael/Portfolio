@@ -19,10 +19,13 @@ export function Footer() {
           </div>
 
           <nav aria-label="Pied de page">
-            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            <ul className="-mx-2 flex flex-wrap">
               {navItems.map((item) => (
                 <li key={item.id}>
-                  <a href={`#${item.id}`} className="hover:text-brand-700 dark:hover:text-brand-300 text-sm transition-colors">
+                  <a
+                    href={`#${item.id}`}
+                    className="hover:text-brand-700 dark:hover:text-brand-300 inline-flex min-h-11 items-center px-2 text-sm transition-colors"
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -39,7 +42,7 @@ export function Footer() {
             href="https://github.com/Nico-Mickael"
             target="_blank"
             rel="noreferrer noopener"
-            className="text-muted hover:text-brand-700 dark:hover:text-brand-300 inline-flex items-center gap-2 text-xs transition-colors"
+            className="text-muted hover:text-brand-700 dark:hover:text-brand-300 -my-1 inline-flex min-h-11 items-center gap-2 py-1 text-xs transition-colors"
           >
             <GithubMark className="h-4 w-4" />
             github.com/Nico-Mickael

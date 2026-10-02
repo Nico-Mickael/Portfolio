@@ -54,7 +54,7 @@ export function Navbar() {
         <a
           href="#accueil"
           onClick={closeMenu}
-          className="text-strong shrink-0 text-sm font-semibold tracking-tight"
+          className="text-strong -my-1.5 inline-flex min-h-11 shrink-0 items-center py-1.5 text-sm font-semibold tracking-tight"
         >
           N<span className="text-brand-700 dark:text-brand-300">.</span>M
           <span className="hidden sm:inline"> ANDRIAMISATA</span>
@@ -66,7 +66,7 @@ export function Navbar() {
               <a
                 href={`#${item.id}`}
                 aria-current={activeId === item.id ? 'true' : undefined}
-                className={`relative rounded-md px-3 py-2 text-sm transition-colors ${
+                className={`relative inline-flex min-h-11 items-center rounded-md px-3 text-sm transition-colors ${
                   activeId === item.id
                     ? 'text-brand-700 dark:text-brand-300 font-medium'
                     : 'text-muted hover:text-strong'
