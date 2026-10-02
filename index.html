@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1d4ed8" />
+    <title>Nico Mickael Andriamisata — Responsable des Systèmes d’Information</title>
+    <meta
+      name="description"
+      content="Ingénieur sortant de l’École Nationale de l’Informatique, Responsable des Systèmes d’Information : IT Support, systèmes et réseaux, cybersécurité, DevOps et développement web. Basé à Fandriana, Madagascar."
+    />
+    <meta name="author" content="Nico Mickael Andriamisata" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Nico Mickael Andriamisata — Responsable des Systèmes d’Information"
+    />
+    <meta
+      property="og:description"
+      content="Ingénieur sortant de l’École Nationale de l’Informatique, passionné par les infrastructures IT, les systèmes, les réseaux, la cybersécurité, le DevOps et le développement web."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      // Applied before paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var stored = localStorage.getItem('portfolio-theme')
+          var dark =
+            stored === 'dark' ||
+            (stored !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

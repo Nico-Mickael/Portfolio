@@ -1,0 +1,235 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    sans-serif;
+
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
+
+  --color-accent-400: #2dd4bf;
+  --color-accent-500: #14b8a6;
+  --color-accent-600: #0d9488;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    --surface: var(--color-white);
+    --surface-muted: #f7f9fc;
+    --surface-raised: var(--color-white);
+    --surface-glass: rgb(255 255 255 / 0.72);
+    --border-subtle: #e2e8f0;
+    --text-strong: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --header-bg: rgb(255 255 255 / 0.8);
+    --bg-gradient: linear-gradient(175deg, #ffffff 0%, #f7f9fc 38%, #edf3fc 72%, #e6eefa 100%);
+    --glow-a: rgb(59 130 246 / 0.13);
+    --glow-b: rgb(45 212 191 / 0.08);
+    color-scheme: light;
+  }
+
+  .dark {
+    --surface: #0f172a;
+    --surface-muted: #0f172a;
+    --surface-raised: #1e293b;
+    --surface-glass: rgb(15 23 42 / 0.66);
+    --border-subtle: #334155;
+    --text-strong: #f1f5f9;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+    --header-bg: rgb(15 23 42 / 0.82);
+    --bg-gradient: linear-gradient(175deg, #14203a 0%, #0f172a 40%, #0c1424 72%, #101a30 100%);
+    --glow-a: rgb(37 99 235 / 0.2);
+    --glow-b: rgb(13 148 136 / 0.12);
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--surface-muted);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Gradient backdrop layer. Fixed (not background-attachment) so it stays
+     stable on mobile Safari and never repaints on scroll. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: var(--bg-gradient);
+    pointer-events: none;
+  }
+
+  /* Two very soft brand-tinted glows drifting slowly behind everything. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -15%;
+    z-index: -1;
+    background:
+      radial-gradient(42% 46% at 22% 14%, var(--glow-a) 0%, transparent 62%),
+      radial-gradient(38% 42% at 82% 26%, var(--glow-b) 0%, transparent 62%);
+    animation: bg-drift 30s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-600);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 0.25rem;
+  }
+}
+
+@utility surface-card {
+  background-color: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+}
+
+@utility text-strong {
+  color: var(--text-strong);
+}
+
+@utility text-muted {
+  color: var(--text-muted);
+}
+
+/* Scroll reveal — discreet, opacity + small translate only */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s var(--ease-out-quint),
+    transform 0.6s var(--ease-out-quint);
+  will-change: opacity, transform;
+}
+
+.reveal[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  body::before {
+    animation: none;
+  }
+
+  .animate-rise,
+  .scroll-progress {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Slow ambient drift for the background glows */
+@keyframes bg-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2.5%, -3%, 0) scale(1.09);
+  }
+}
+
+/* Entrance animation for above-the-fold hero content, staggered with
+   inline animation-delay. Distinct from .reveal so it does not depend on
+   IntersectionObserver for content already in view. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-rise {
+  animation: rise 0.75s var(--ease-out-quint) both;
+}
+
+/* Thin scroll-progress indicator pinned to the top of the sticky header */
+.scroll-progress {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.12s linear;
+}
+
+/* Subtle grid used behind the hero */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  /* the ambient gradient/glow layers must never reach the printed PDF */
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  /* keep CV blocks from being cut in half by a page break */
+  article section,
+  article header {
+    break-inside: avoid;
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+}
