@@ -1,5 +1,4 @@
 ﻿import { ArrowRight, Download, MapPin } from 'lucide-react'
-import { Link } from 'react-router-dom'
 
 import { GithubMark } from '../components/icons/GithubMark'
 import { profile } from '../data/profile'
@@ -56,14 +55,14 @@ export function Hero() {
               <ArrowRight className="h-4 w-4" />
             </a>
 
-            <Link
-              to="/cv"
-              onClick={() => window.setTimeout(() => window.print(), 350)}
+            <a
+              href={`${import.meta.env.BASE_URL}cv-nico-mickael.pdf`}
+              download="CV-Nico-Mickael.pdf"
               className="border-[var(--border-subtle)] bg-[var(--surface-raised)] text-strong hover:border-brand-500 hover:text-brand-700 dark:hover:text-brand-300 inline-flex h-12 items-center gap-2 rounded-lg border px-6 text-base font-medium transition-colors"
             >
               <Download className="h-4 w-4" />
               Télécharger mon CV
-            </Link>
+            </a>
 
             <a
               href={profile.github}

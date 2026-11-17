@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "cv:pdf": "npm run build && node scripts/generate-cv-pdf.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
