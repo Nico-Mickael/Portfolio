@@ -207,6 +207,11 @@
 }
 
 @media print {
+  :root,
+  .dark {
+    color-scheme: light !important;
+  }
+
   .no-print {
     display: none !important;
   }
@@ -214,6 +219,7 @@
   html,
   body {
     background: #fff !important;
+    color-scheme: light !important;
   }
 
   /* the ambient gradient/glow layers must never reach the printed PDF */

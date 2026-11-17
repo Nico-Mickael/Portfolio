@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs'
 import { copyFile, mkdir, rm, stat } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
+import { chromium } from 'playwright-core'
 
 // Regenerates public/cv-nico-mickael.pdf from the /cv page using a headless
 // Chromium browser (Edge, Chrome or Chromium) and vite preview.
@@ -31,14 +32,6 @@ function findBrowser() {
   return browser
 }
 
-function run(command, args, options = {}) {
-  return new Promise((resolve, reject) => {
-    const child = spawn(command, args, { stdio: 'inherit', ...options })
-    child.on('error', reject)
-    child.on('exit', (code) => (code === 0 ? resolve() : reject(new Error(`${command} a échoué (code ${code})`))))
-  })
-}
-
 async function waitForServer(url, timeoutMs = 30_000) {
   const deadline = Date.now() + timeoutMs
   while (Date.now() < deadline) {
@@ -60,22 +53,30 @@ const preview = spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'previ
 try {
   await waitForServer(`http://localhost:${PORT}/`)
   await rm(PROFILE_DIR, { recursive: true, force: true })
-  await mkdir(join('public'), { recursive: true })
+  await mkdir('public', { recursive: true })
 
   const outputPath = resolve(OUTPUT)
   const previousMtime = existsSync(outputPath) ? (await stat(outputPath)).mtimeMs : 0
 
-  await run(findBrowser(), [
-    '--headless=new',
-    '--disable-gpu',
-    '--no-first-run',
-    '--no-default-browser-check',
-    `--user-data-dir=${PROFILE_DIR}`,
-    '--no-pdf-header-footer',
-    '--virtual-time-budget=8000',
-    `--print-to-pdf=${resolve(OUTPUT)}`,
-    URL,
-  ])
+  const browser = await chromium.launch({ executablePath: findBrowser(), headless: true })
+
+  try {
+    const page = await browser.newPage({ colorScheme: 'light' })
+    await page.goto(URL, { waitUntil: 'networkidle' })
+    await page.emulateMedia({ media: 'print', colorScheme: 'light' })
+    await page.waitForFunction(() => {
+      const image = document.querySelector('article img')
+      return image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0
+    })
+    await page.pdf({
+      path: outputPath,
+      format: 'A4',
+      printBackground: true,
+      preferCSSPageSize: true,
+    })
+  } finally {
+    await browser.close()
+  }
 
   const generated = existsSync(outputPath) ? (await stat(outputPath)).mtimeMs : 0
   if (generated <= previousMtime) {
